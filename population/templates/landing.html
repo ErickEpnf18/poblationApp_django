@@ -25,11 +25,18 @@
                   class="card card-body text-black m-2 mt-3 d-flex flex-row justify-content-between col-3 flex-wrap text-wrap"
                 >
                   <div>
-                    <h4>{{data.city}}</h4>
+                    <footer class="text-muted">
+                     {{data.admin_name}}
+                   </footer>
+                    <h4 class="h4">
+                      {{data.city}}
+                    </h4>
                     {% if data.admin_name %}
-                    <p>Ciudad capital: {{data.admin_name}}</p>
+                    {% comment %} <p>{{data.admin_name}}</p> {% endcomment %}
                     {% endif %}
-                    <p>Población: {{data.population | floatformat}}</p>
+                    <p>
+                      Población: {{data.population | floatformat}}
+                    </p>
                   </div>
                    <form action="{% url 'delete_province' data.id %}" method="POST">
                     {% csrf_token %}
