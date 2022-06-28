@@ -17,10 +17,21 @@
     <div class="container">
         <div class="row">
             <div class="col-12 ">
-              {% csrf_token %}
-              <div class="row">
+              <div class="row d-flex justify-content-center ">
+<form action="{% url 'searchbar' %}" method="post" >
+  {% csrf_token %}
 
-                 {% for data in cities %}
+  <div class="input-group w-100 px-5 d-flex justify-content-center align-items-center">
+    <input type="text" name="searchbar" class="form-control" placeholder="Busca una ciudad" aria-label="Busca una ciudad" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit">Search</button>
+    </div>
+  </div>
+</form>
+{% if searchData %}
+<h4>Resultados encontrados: {{searchData |length}}</h4>
+{% elif cities %}
+{% for data in cities %}
                 <div
                   class="card card-body text-black m-2 mt-3 d-flex flex-row justify-content-between col-3 flex-wrap text-wrap"
                 >
@@ -44,9 +55,34 @@
                   </form>
                 </div>
                   {% empty %}
-                  <h1 class="display-4 text-center">Not cities yet</h1>
+                  
+                  <h1 class="display-4 text-center">Ninguna coincidencia</h1>
                 </div>
                 {% endfor %}
+                {% else %}
+                <h1 class="display-4 text-center">Ninguna coincidencia</h1>
+{% endif %}
+
+{% for i in searchData %}
+<div
+class="card card-body text-black m-2 mt-3 d-flex flex-row justify-content-between col-3 flex-wrap text-wrap"
+>
+<div>
+  <footer class="text-muted">
+   {{i.admin_name}}
+ </footer>
+  <h4 class="h4">
+    {{i.city}}
+  </h4>
+  <p>
+    Población: {{i.population | floatformat}}
+  </p>
+</div>
+</div>
+{% endfor %}
+
+
+                 
               </div>
 
             </div>
