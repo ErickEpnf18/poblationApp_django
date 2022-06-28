@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'app_population.wsgi.application'
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'f18_population',
         'USER': 'f18',
         'PASSWORD': 'zukio17.',
