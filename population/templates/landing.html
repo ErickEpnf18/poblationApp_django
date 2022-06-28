@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population App in Ecuador</title>
+    <link
+    rel="stylesheet"
+    href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="{% static 'main.css' %}" />
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ">
+              {% csrf_token %}
+              <div class="row">
+
+                 {% for data in cities %}
+                <div
+                  class="card card-body text-black m-2 mt-3 d-flex flex-row justify-content-between col-3 flex-wrap text-wrap"
+                >
+                  <div>
+                    <h4>{{data.city}}</h4>
+                    {% if data.admin_name %}
+                    <p>Ciudad capital: {{data.admin_name}}</p>
+                    {% endif %}
+                    <p>Población: {{data.population | floatformat}}</p>
+                  </div>
+                   <form action="{% url 'delete_province' data.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger btn-sm">delete</button>
+                  </form>
+                </div>
+                  {% empty %}
+                  <h1 class="display-4 text-center">Not cities yet</h1>
+                </div>
+                {% endfor %}
+              </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
