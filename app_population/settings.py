@@ -76,11 +76,12 @@ WSGI_APPLICATION = 'app_population.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'populationdb',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'NAME': 'f18_population',
+        'USER': 'f18',
+        'PASSWORD': 'zukio17.',
+        'HOST': 'postgresql-f18.alwaysdata.net',
         'PORT': '5432',
     }
 }
